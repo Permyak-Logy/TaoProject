@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+  {% if id == 1 %}
+  <p>Да, я нашёлся</p>
+  {% elif id == 2 %}
+  <p>Почти</p>
+  {% elif id == 0%}
+  <p>Не знаю</p>
+  {% else %}
+  <p>Неа, я не тут</p>
+  {% endif %}
+</body>
+</html>
