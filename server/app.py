@@ -1,6 +1,6 @@
 import random
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -29,5 +29,21 @@ def get_people(name):
     }}
 
 
+@app.route('/upload', methods=['GET', 'POST'])
+def get_post_upload():
+    if request.method == 'GET':
+        return """
+        <form method=post enctype=multipart/form-data>
+        <input type=file name=file /><input type=submit value=upload />
+        </form>
+        """
+    else:
+        file = request.files["file"]
+        file.save(file.filename)
+        file.flush()
+
+    return {"status": "ok"}
+
+
 if __name__ == "__main__":
-    app.run('127.0.0.1', port=80)
+    app.run('0.0.0.0', port=80)
